@@ -14,6 +14,7 @@ const ItemForm: React.FC<ItemFormProps> = ({ editId, editfName,editlName, editAd
   const [fname, setfName] = useState<string>(editfName);
   const [lname, setlName] = useState<string>(editlName);
   const [address, setAddress] = useState<string>(editAddress);
+  const[loading, setLoading] = useState(false);
  
 
   useEffect(() => {
@@ -24,11 +25,13 @@ const ItemForm: React.FC<ItemFormProps> = ({ editId, editfName,editlName, editAd
   
 
   const handleSubmit = async (e: React.FormEvent) => {
+    setLoading(true);
     e.preventDefault();
     try {
       if (editId) {
         await axios.put(`https://crudforinterview.onrender.com/api/items/${editId}`, { fname, lname, address });
         toast.success('Item updated successfully!');
+        setLoading(false);
         setEditId(null);
       } else {
         await axios.post('https://crudforinterview.onrender.com/api/items', { fname, lname, address });
@@ -67,7 +70,7 @@ const ItemForm: React.FC<ItemFormProps> = ({ editId, editfName,editlName, editAd
         onChange={(e) => setAddress(e.target.value)}
         required
       />
-      <button type="submit">{editId ? 'Update' : 'Add'} User</button>
+      <button type="submit">{loading ? 'Saving...' : 'Add'} User</button>
     </form>
   );
 };
