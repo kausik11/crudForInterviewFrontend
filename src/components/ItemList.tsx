@@ -13,7 +13,7 @@ interface ItemListProps {
   startEdit: (id: string, fname: string,lname: string, address: string) => void;
 }
 
-const ItemList: React.FC<ItemListProps> = ({ startEdit }) => {
+const ItemList: React.FC<ItemListProps> = () => {
   const [items, setItems] = useState<Item[]>([]);
 
   useEffect(() => {
