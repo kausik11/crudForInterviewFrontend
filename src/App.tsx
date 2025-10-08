@@ -5,13 +5,15 @@ import './App.css';
 
 const App: React.FC = () => {
   const [editId, setEditId] = useState<string | null>(null);
-  const [editName, setEditName] = useState<string>('');
-  const [editDescription, setEditDescription] = useState<string>('');
+  const [editfname, setEditFname] = useState<string>('');
+  const [editLname, setEditLname] = useState<string>('');
+  const [editAddress, setEditAddress] = useState<string>('');
 
-  const startEdit = (id: string, name: string, description: string) => {
+  const startEdit = (id: string, fname: string, lname: string, address: string) => {
     setEditId(id);
-    setEditName(name);
-    setEditDescription(description);
+    setEditFname(fname);
+    setEditLname(lname);
+    setEditAddress(address);
   };
 
   return (
@@ -19,8 +21,9 @@ const App: React.FC = () => {
       <h1>MERN CRUD App</h1>
       <ItemForm
         editId={editId}
-        editName={editName}
-        editDescription={editDescription}
+        editfName={editfname}
+        editlName={editLname}
+        editAddress={editAddress}
         setEditId={setEditId}
       />
       <ItemList startEdit={startEdit} />

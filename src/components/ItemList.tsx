@@ -43,7 +43,7 @@ const ItemList: React.FC<ItemListProps> = ({ startEdit }) => {
       {items.map((item) => (
         <li key={item._id}>
           {item.fname} - {item.lname}
-          <button onClick={() => startEdit(item._id, item.fname, item.lname, item.address)}>Edit</button>
+          {/* <button onClick={() => startEdit(item._id, item.fname, item.lname, item.address)}>Edit</button> */}
           <button onClick={() => handleDelete(item._id)}>Delete</button>
         </li>
       ))}
