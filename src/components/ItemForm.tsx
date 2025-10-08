@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 interface ItemFormProps {
   editId: string | null;
@@ -27,9 +28,11 @@ const ItemForm: React.FC<ItemFormProps> = ({ editId, editfName,editlName, editAd
     try {
       if (editId) {
         await axios.put(`https://crudforinterview.onrender.com/api/items/${editId}`, { fname, lname, address });
+        toast.success('Item updated successfully!');
         setEditId(null);
       } else {
         await axios.post('https://crudforinterview.onrender.com/api/items', { fname, lname, address });
+           toast.success('Item added successfully!');
       }
       setlName('');
       setfName('');
@@ -37,6 +40,7 @@ const ItemForm: React.FC<ItemFormProps> = ({ editId, editfName,editlName, editAd
       window.location.reload(); // Simple refresh; use state management in production
     } catch (err) {
       console.error(err);
+      toast.error('Error submitting data');
     }
   };
 
@@ -63,7 +67,7 @@ const ItemForm: React.FC<ItemFormProps> = ({ editId, editfName,editlName, editAd
         onChange={(e) => setAddress(e.target.value)}
         required
       />
-      <button type="submit">{editId ? 'Update' : 'Add'} Item</button>
+      <button type="submit">{editId ? 'Update' : 'Add'} User</button>
     </form>
   );
 };

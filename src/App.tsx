@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import ItemForm from './components/ItemForm';
 import ItemList from './components/ItemList';
 import './App.css';
+  import { ToastContainer } from 'react-toastify';
 
 const App: React.FC = () => {
   const [editId, setEditId] = useState<string | null>(null);
@@ -27,6 +28,7 @@ const App: React.FC = () => {
         setEditId={setEditId}
       />
       <ItemList startEdit={startEdit} />
+      <ToastContainer position="top-right" autoClose={3000} />
     </div>
   );
 };
