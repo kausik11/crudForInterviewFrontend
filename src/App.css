@@ -1,7 +1,7 @@
 /* App container */
 .App {
-  min-width: 900px; /* Increased for larger screens */
-  margin:auto 50%;
+  width: 100%; /* Full width */
+  margin: 0;
   padding: 30px;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   background-color: #f5f7fa;
@@ -12,14 +12,13 @@
 .App h1 {
   text-align: center;
   color: #2c3e50;
-  font-size: 2.5rem; /* Slightly larger for big screens */
-  margin-bottom: 40px;
+  font-size: 2rem; /* Smaller for better fit */
+  margin-bottom: 30px;
 }
-
 /* Form styling */
 form {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr auto; /* Inputs and button in a row */
+  grid-template-columns: 1fr 1fr 1fr auto;
   gap: 20px;
   background-color: #ffffff;
   padding: 25px;
@@ -35,6 +34,7 @@ input {
   border-radius: 6px;
   outline: none;
   transition: border-color 0.3s, box-shadow 0.3s;
+  margin: 5px; /* Added margin to each input field */
 }
 
 input:focus {
@@ -53,44 +53,64 @@ button[type="submit"] {
   transition: background-color 0.3s;
 }
 
+input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+button[type="submit"] {
+  padding: 10px;
+  font-size: 0.95rem;
+  background-color: #2563eb;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  width: 100%; /* Full width for button */
+}
+
 button[type="submit"]:hover {
   background-color: #1d4ed8;
 }
+
 
 /* List styling */
 ul {
   list-style: none;
   padding: 0;
-  display: grid;
-  gap: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
 li {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column; /* Stack content vertically */
+  align-items: stretch; /* Ensure buttons stretch */
   background-color: #ffffff;
-  padding: 20px;
-  border-radius: 10px;
+  padding: 15px;
+  border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  font-size: 1.1rem;
+  font-size: 1rem; /* Adjusted font size */
 }
 
 li button {
-  padding: 10px 16px;
-  font-size: 0.95rem;
+  padding: 8px;
+  font-size: 0.9rem; /* Smaller buttons */
   border: none;
   border-radius: 6px;
   cursor: pointer;
   transition: background-color 0.3s;
+  width: 100%; /* Full width buttons */
+  margin-top: 8px; /* Space between buttons */
 }
 
 li button:first-of-type {
   background-color: #2ecc71;
   color: #ffffff;
-  margin-right: 10px;
+  margin-right: 0; /* Remove margin for stacked buttons */
 }
-
 li button:first-of-type:hover {
   background-color: #27ae60;
 }
@@ -103,40 +123,84 @@ li button:last-of-type {
 li button:last-of-type:hover {
   background-color: #dc2626;
 }
-
-/* Responsive design */
+ 
+/* Responsive design for small devices */
 @media (max-width: 900px) {
-  form {
-    grid-template-columns: 1fr; /* Stack inputs on smaller screens */
-  }
-
   .App {
-    padding: 20px;
+    padding: 15px; /* Reduced padding */
+    min-width: 100%; /* Full width */
   }
 
   .App h1 {
-    font-size: 2rem;
+    font-size: 1.8rem; /* Further reduced for small screens */
+    margin-bottom: 20px;
+  }
+
+  form {
+    grid-template-columns: 1fr;
+  }
+
+  input {
+    margin: 4px; /* Adjusted margin for smaller screens */
+  }
+
+  button[type="submit"] {
+    font-size: 0.9rem;
+    padding: 8px;
   }
 
   li {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
+    padding: 12px;
+    font-size: 0.95rem; /* Smaller font */
   }
 
   li button {
-    width: 100%;
-    text-align: center;
-  }
-
-  li button:first-of-type {
-    margin-right: 0;
+    font-size: 0.85rem;
+    padding: 8px;
   }
 }
 
+/* Extra small devices (phones, 600px and down) */
+@media (max-width: 600px) {
+  .App {
+    padding: 10px; /* Minimal padding */
+  }
+
+  .App h1 {
+    font-size: 1.5rem; /* Even smaller for very small screens */
+    margin-bottom: 15px;
+  }
+
+  form {
+    padding: 10px;
+    gap: 10px;
+  }
+
+  input {
+    font-size: 0.85rem;
+    padding: 6px;
+  }
+
+  button[type="submit"] {
+    font-size: 0.85rem;
+    padding: 6px;
+  }
+
+  li {
+    padding: 10px;
+    font-size: 0.9rem;
+  }
+
+  li button {
+    font-size: 0.8rem;
+    padding: 6px;
+  }
+}
+
+/* Large screens */
 @media (min-width: 1200px) {
   .App {
-    max-width: 1200px; /* Wider for very large screens */
+    max-width: 1200px;
     padding: 40px;
   }
 
@@ -145,12 +209,27 @@ li button:last-of-type:hover {
   }
 
   form {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr auto; /* Restore original grid */
     padding: 30px;
   }
 
   li {
+    flex-direction: row; /* Restore horizontal layout */
+    justify-content: space-between;
+    align-items: center;
     padding: 25px;
     font-size: 1.2rem;
+  }
+
+  li button {
+    width: auto; /* Buttons return to auto width */
+    margin-top: 0;
+    margin-right: 10px;
+  }
+
+  li button:first-of-type {
+    margin-right: 10px;
   }
 }
 
